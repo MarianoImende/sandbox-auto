@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Sandbox de automatización</title>
+  <style>
+  
+  
+   /* Estilos para la modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover {
+            color: black;
+            text-decoration: none;
+        }
+		
+  /* Estilo para la tabla */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Estilo para el encabezado de la tabla */
+th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Estilo para las celdas de la tabla */
+td {
+  padding: 8px;
+}
+
+/* Estilo para las filas alternas (opcional) */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Estilo para las celdas editables */
+td[contenteditable="true"] {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+/* Estilo al enfocar una celda editable */
+td[contenteditable="true"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+
+
+   .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container iframe {
+      width: 900px;
+      height: 500px;
+    }
+	
+	.container_2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container iframe {
+      width: 900px;
+      height: 500px;
+    }
+	
+	.video-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+  }
+
+  .video {
+    max-width: 560px;
+    max-height: 315px;
+  }
+	
+	
+    .custom-button {
+      background-color: blue;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+    }
+    .custom-button:active {
+      background-color: red;
+    }
+	
+	h1 {
+      text-align: center;
+    }
+	.separator {
+      border: none;
+      border-top: 5px solid black;
+      margin: 20px 0;
+    }
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.table-container {
+  max-height: 300px; /* Altura máxima de la tabla */
+  overflow-x: auto; /* Agrega una barra de desplazamiento horizontal cuando sea necesario */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando sea necesario */
+}
+
+.rectangle {
+  width: 200px;
+  height: 100px;
+  background-color: lightblue;
+  border: 1px solid darkblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: lightgray;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+.myDIV:hover + .hide {
+  display: block;
+  color: red;
+}
+
+        .iframe-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 65vh; /* Ajusta la altura según tus necesidades */
+        }
+
+        .iframe-container iframe {
+            width: 400px; /* Ancho del iframe */
+            height: 400px; /* Altura del iframe */
+        }
+
+/* Estilo base para botones */
+.button {
+    display: inline-block;
+    padding: 10px 20px; /* Ajusta el relleno según tu preferencia */
+    font-size: 16px; /* Tamaño de fuente */
+    border: none;
+    background-color: #0077FF; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+	justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.button:hover {
+    background-color: #0055CC; /* Cambio de color de fondo al pasar el mouse */
+}
+
+/* Estilo para botones primarios (puedes personalizarlo) */
+.primary-button {
+    background-color: #0077FF; /* Color de fondo primario */
+}
+
+.primary-button:hover {
+    background-color: #0055CC; /* Cambio de color de fondo al pasar el mouse */
+}
+
+/* Estilo para botones secundarios (puedes personalizarlo) */
+.secondary-button {
+    background-color: #FF7700; /* Color de fondo secundario */
+}
+
+.secondary-button:hover {
+    background-color: #DD6600; /* Cambio de color de fondo al pasar el mouse */
+}
+
+/* Estilo para botones de acción (puedes personalizarlo) */
+.action-button {
+    background-color: #00AA00; /* Color de fondo para botones de acción */
+}
+
+.action-button:hover {
+    background-color: #008800; /* Cambio de color de fondo al pasar el mouse */
+}
+
+#my_button {
+  background-color: #4CAF50; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno (arriba/abajo y izquierda/derecha) */
+  border: none; /* Sin borde */
+  cursor: not-allowed; /* Cambiar el cursor cuando está deshabilitado */
+}
+    </style>
+  </style>
+	<title>Pagina para probar los metodos de la clase basePage</title>
+  </head>
+  <body>
+    <h1>Pagina para probar los metodos de la clase basePage</h1>
+
+				<button name="button">Click me</button>
+				<button disabled> Crear usuario </button>
+				
+				<a href="https://www.geeksforgeeks.org/" id="link" />Text Here</a>
+
+
+<h2>Mostrar un elemento al pasar el mouse</h2>
+
+<div class="myDIV">pasa el cursor sobre mi.</div>
+<div class="hide">Se me muestra cuando alguien se desplaza sobre el div de arriba.</div>
+<hr class="separator">
+
+		<div>
+            <form>
+                Username:<input type="text" name="username" id="username" onchange="toggleButton()">
+                Password:<input type="password" name="password" id="password"  onchange="toggleButton()">
+                <input id="submitButton" type="submit" value="Submit" disabled/>
+            </form>
+        </div>
+	
+<hr class="separator">
+    <form>
+      <label for="Nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre"><br><br>
+
+      <label for="Apellido">Apellido:</label>
+      <input type="apellido" id="apellido" name="apellido"><br><br>
+
+
+<hr class="separator">
+
+  <label for="cars">Selecciones su vehiculo:</label>
+  <br>
+  <select multiple name="autos" id="autos" size="6" multiple>
+    <option value="volvo">Volvo</option>
+    <option value="saab" selected>Saab</option>
+    <option value="opel">Opel</option>
+    <option value="audi" selected>audi</option>
+	<option value="audi">Renault</option>
+	<option value="audi">Fiat</option>
+	<option value="audi">VWW</option>
+  </select>
+  
+  <hr class="separator">
+  
+      <label for="gender">País:</label>
+      <select id="gender" name="gender">
+		<option value="Grecia">Grecia</option>
+		<option value="Dinamarca">Dinamarca</option>
+		<option value="Camerun" selected>Camerun</option>
+		<option value="Uruguay">Uruguay</option>
+		<option value="Sudán" selected>Sudán</option>
+		<option value="Camboya">Camboya</option>
+      </select><br><br>
+
+      <label for="agree">Estoy de acuerdo:</label>
+      <input type="checkbox" id="agree" name="agree"><br><br>
+
+      <input type="submit" value="Enviar">
+    </form>
+
+    <p>Haga clic en el siguiente botón para mostrar un mensaje de alerta:</p>
+    <button onclick="alert('¡Hola mundo!')">Mostrar mensaje de alerta</button>
+
+    <p>Haga clic en el siguiente enlace para ir a una página externa:</p>
+    <a href="https://www.google.com/">Ir a Google</a>
+	<br> 
+	<br>
+<hr class="separator">
+	<br>
+	<br>
+	<input type="file" name="archivo" id="customFile>
+	<br> <br>
+	<input type="checkbox" name="checkbox" value="valor_checkbox">Checkbox
+	<input type="radio" name="radio" value="valor_radio">  Radio button
+    <hr class="separator">
+	<br> <br>
+	<!-- Video Tags -->
+	<h1>Video</h1>
+   <div class="video-contenedor">
+  <video class="video" controls>
+    <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<hr class="separator">
+
+
+	<h1>Tabla HTML editable</h1>
+
+<div class="table-container">
+<table width="560" height="315">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Edad</th>
+      <th>País</th>
+	  <th>Ciudad</th>
+      <th>Profesión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td contenteditable="true">John</td>
+      <td contenteditable="true">Doe</td>
+      <td contenteditable="true">30</td>
+      <td contenteditable="true">Estados Unidos</td>
+	  <td contenteditable="true">Dallas</td>
+      <td contenteditable="true">Ingeniero</td>
+    </tr>
+    <tr>
+      <td contenteditable="true">Jane</td>
+      <td contenteditable="true">Smith</td>
+      <td contenteditable="true">25</td>
+      <td contenteditable="true">Canadá</td>
+	  <td contenteditable="true">Montreal</td>
+      <td contenteditable="true">Diseñadora</td>
+    </tr>
+    <tr>
+      <td contenteditable="true">David</td>
+      <td contenteditable="true">Brown</td>
+      <td contenteditable="true">35</td>
+      <td contenteditable="true">Reino Unido</td>
+	  <td contenteditable="true">Liverpool</td>
+      <td contenteditable="true">Médico</td>
+    </tr>
+    <tr>
+      <td contenteditable="true">Maria</td>
+      <td contenteditable="true">González</td>
+      <td contenteditable="true">28</td>
+      <td contenteditable="true">España</td>
+	  <td contenteditable="true">Barcelona</td>
+      <td contenteditable="true">Abogada</td>
+    </tr>
+    <tr>
+      <td contenteditable="true">Carlos</td>
+      <td contenteditable="true">López</td>
+      <td contenteditable="true">32</td>
+      <td contenteditable="true">México</td>
+	  <td contenteditable="true">DF</td>
+      <td contenteditable="true">Programador</td>
+    </tr>
+	<tr>
+      <td contenteditable="true">Carlos</td>
+      <td contenteditable="true">Gonzalez</td>
+      <td contenteditable="true">32</td>
+      <td contenteditable="true">Buenos Aires</td>
+	  <td contenteditable="true">La Plata</td>
+      <td contenteditable="true">Plan Social</td>
+    </tr>
+ </tbody>
+</table>
+</div>
+<hr class="separator">
+
+<button onclick="showAlert2()">Ingresar text en Alert</button>
+
+<hr class="separator">
+      <img alt="Selenium&quot; Icon - Download for free – Iconduck" id="dimg_27" src="data:image/jpeg;base64,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" data-atf="1" data-frt="0" class="center-image">
+<hr class="separator">	  
+		<button class="custom-button" onmousedown="changeColor()" onmouseup="restoreColor()">Presiona el botón</button>
+<hr class="separator">
+<h1>Esto es un iFrame:</h1>
+<div class="container">
+  <iframe id="frame1" name="miframe" title="Inline Frame Example" src="frame1.html">
+ 
+  </iframe>
+</div>
+<hr class="separator">
+<div class="rectangle">
+  <button class="button" onclick="showAlert()">Botón</button>
+</div>
+
+<hr class="separator">
+    <h1>Elemento a Ocultar</h1>
+    <p id="elementToHide">Este es el elemento que será ocultado.</p>
+<hr class="separator">
+
+
+
+<hr class="separator">
+<h1>Ventana Modal</h1>
+    
+    <!-- Botón para abrir el modal -->
+	<center>
+    <button id="openModal" class="button primary-button" align="center">Abrir Ventana Modal</button>
+    </center>
+    <!-- Modal Container -->
+<section class="modal-body">
+    <div id="fileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Subir Archivo</h2>
+            <section>
+            <div>
+                <div>
+                    <div>
+                        <div>
+                         <form enctype="multipart/form-data" method="post" id="fileForm">
+                         <input type="file" id="fileInput" name="uploadedFile">
+                         <button id="uploadFile">Subir</button>
+                         </form>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+            </section>
+        </div>
+    </div>
+</section>
+
+<hr class="separator">
+
+<h1>drag and drop</h1>
+ 
+<div class="iframe-container">
+  <iframe id="iframe_drag_and_drop" name="iframe_drag_and_drop" title="drag_and_drop" src="drag_and_drop.html" frameborder="0"></iframe>
+</div>
+<hr class="separator">
+
+	<h1>Ejemplo de Desaparición de Elemento</h1>
+
+    <!-- Un elemento de ejemplo que desaparecerá -->
+    <div id="element-to-disappear">
+	<center>
+       <button class="button action-button">Este es un elemento que desaparecerá luego de 5 segundos...</button>
+	</center>
+	
+    </div>
+	
+<hr class="separator">
+	<h1>Prueba de botón clicleable</h1>
+	<center>
+	   <button id="my_button" disabled >Esperando...</button>
+    </center>
+<hr class="separator">
+
+    <h1>Espera a que el elemento se vuelva invisible</h1>
+    <p id="element_id">Este es un elemento de prueba:</p>
+    <button id="hide_button">Ocultar Elemento con Temporizador</button>
+
+<hr class="separator">
+
+	<script>
+	
+	var hide_button = document.getElementById("hide_button");
+	var visible = true; // Variable para rastrear si el elemento está visible o no
+
+	function toggleVisibility() {			
+		if (visible) {
+			hide_button.style.display = "none"; // Ocultar el elemento
+		} else {
+			hide_button.style.display = "block"; // Mostrar el elemento
+		}
+		visible = !visible; // Alternar el estado de visibilidad
+		}
+
+	// Función para alternar la visibilidad y configurar un temporizador para el próximo cambio
+	function toggleAndRepeat() {
+		toggleVisibility(); // Llama a la función para alternar la visibilidad
+		setTimeout(toggleAndRepeat, 5000); // Configura un temporizador para el próximo cambio después de 5 segundos
+	}
+
+	// Iniciar el bucle
+	toggleAndRepeat();
+
+		
+
+ // Obtén una referencia al botón
+  var myButton = document.getElementById("my_button");
+  // Espera 10 segundos (10000 milisegundos) y luego habilita el botón
+  setTimeout(function() {
+    myButton.removeAttribute("disabled");
+    myButton.textContent = "¡Habilitado!";
+    myButton.style.backgroundColor = "#4CAF50"; // Cambia el color de fondo cuando se habilita
+    myButton.style.cursor = "pointer"; // Cambia el cursor al valor predeterminado cuando se habilita
+
+    // Agregar un evento click al botón habilitado
+    myButton.addEventListener("click", function() {
+      alert("Botón clicleable"); // Muestra una alerta con el mensaje "Botón clicleable"
+    });
+  }, 10000); // 10000 ms = 10 segundos
+  
+  
+	// Simulamos la desaparición del elemento después de 5 segundos
+        setTimeout(function() {
+            var elementToDisappear = document.getElementById("element-to-disappear");
+            if (elementToDisappear) {
+                elementToDisappear.style.display = "none";
+            }
+        }, 5000); // Desaparecerá después de 5000 ms (5 segundos)
+		
+	function showAlert2() {
+      var inputValue = prompt("Ingrese un texto:");
+      alert("Texto ingresado: " + inputValue);
+    }
+	
+    function changeColor() {
+      var button = document.querySelector('.custom-button');
+      button.style.backgroundColor = 'red';
+    }
+    
+    function restoreColor() {
+      var button = document.querySelector('.custom-button');
+      button.style.backgroundColor = 'blue';
+    }
+	function showAlert() {
+  alert('¡Mensaje de alerta!');
+}
+
+	function toggleButton()
+            {
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+                if (username && password) {
+                    document.getElementById('submitButton').disabled = false;
+                } else {
+                    document.getElementById('submitButton').disabled = true;
+                }
+            }
+	// Código JavaScript para ocultar el elemento
+      var element = document.getElementById("elementToHide");
+      element.style.visibility = "visible"; // Cambiar a "hidden" para ocultar
+	  
+	   // JavaScript para mostrar y ocultar la modal
+        const openModalButton = document.getElementById("openModal");
+        const closeModalButton = document.getElementById("closeModal");
+        const modal = document.getElementById("fileModal");
+
+        openModalButton.addEventListener("click", () => {
+            modal.style.display = "block";
+        });
+
+        closeModalButton.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        // JavaScript para la subida de archivos
+        const fileInput = document.getElementById("fileInput");
+        const uploadButton = document.getElementById("uploadFile");
+        const fileForm = document.getElementById("fileForm");
+
+        uploadButton.addEventListener("click", () => {
+            // Recupera el archivo seleccionado
+            const file = fileInput.files[0];
+            if (file) {
+                // Simplemente para demostración, puedes agregar tu lógica para subir el archivo al servidor aquí
+                alert("Archivo seleccionado: " + file.name);
+            } else {
+                alert("Por favor, selecciona un archivo.");
+            }
+        });
+	 
+
+  </script>  
+
+
+  </body>
+</html>

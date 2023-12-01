@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frame 1</title>
+	<style>
+    .custom-button {
+      background-color: green;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .custom-button:active {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+    <h1>Neuroplasticidad</h1>
+	
+	<h1>El sorprendente poder del cerebro para repararse a diario y aprender toda la vida</h1>
+  <p>En qué consiste la capacidad de crear nuevas conexiones neuronales día a día y así favorecer la memoria, la agilidad mental o la capacidad de aprendizaje. Qué hábitos y actividades son recomendables.Victoria Aldinio (MN 148547), médica del servicio de Neurología del Hospital Alemán, explicó a Infobae: “La neuroplasticidad es muy importante porque en situaciones en las que hay una enfermedad como puede ser, por ejemplo, el Parkinson o una demencia tipo Alzheimer, el cerebro readapta sus funciones a esta situación nueva. Entonces, esto nos permite adquirir nuevas habilidades y conocimientos”, explicó la especialista.</p>
+	<br> <br>
+	 <button onclick="alert('¡Hola mundo!')">Mostrar mensaje de alerta</button>
+	 <br> <br>	
+	<button class="custom-button" onmousedown="changeColor()" onmouseup="restoreColor()">Presiona el botón</button>
+	<script>
+    function changeColor() {
+      var button = document.querySelector('.custom-button');
+      button.style.backgroundColor = 'red';
+    }
+    
+    function restoreColor() {
+      var button = document.querySelector('.custom-button');
+      button.style.backgroundColor = 'green';
+    }
+  </script>
+  
+</body>
+</html>
